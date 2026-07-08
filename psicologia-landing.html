@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lic. Eliana Malvicino — Psicología Clínica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+
+
+<style>
+  :root{
+    --ink:        #20231F;
+    --ink-soft:   #4A4E45;
+    --paper:      #E9E4D8;
+    --paper-dark: #DDD6C4;
+    --sage:       #55694F;
+    --sage-deep:  #3C4B38;
+    --ochre:      #AD8140;
+    --line:       #C9C1AC;
+    --white:      #FAF8F2;
+    --radius:     7px;
+    --max:        1120px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,.serif{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    color:var(--ink);
+    line-height:1.15;
+    letter-spacing:-0.01em;
+  }
+
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.04em;
+  }
+
+  a{color:inherit;}
+
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 32px;}
+
+  :focus-visible{outline:2px solid var(--sage); outline-offset:3px;}
+
+  /* ============ HEADER ============ */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(233,228,216,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 32px; max-width:var(--max); margin:0 auto;
+  }
+  .logo{
+    font-family:'Fraunces', serif; font-size:1.15rem; font-weight:500;
+    letter-spacing:0.01em;
+  }
+  .logo span{color:var(--sage);}
+  .nav-links{
+    display:flex; gap:36px; list-style:none;
+    font-size:0.92rem; color:var(--ink-soft);
+  }
+  .nav-links a{text-decoration:none; transition:color .2s;}
+  .nav-links a:hover{color:var(--sage-deep);}
+  .nav-cta{
+    display:inline-block;
+    background:var(--sage-deep); color:var(--white);
+    padding:10px 22px; border-radius:var(--radius);
+    font-size:0.88rem; text-decoration:none;
+    transition:background .2s;
+  }
+  .nav-cta:hover{background:var(--ink);}
+  .burger{display:none; background:none; border:none; cursor:pointer; padding:6px;}
+  .burger span{display:block; width:22px; height:2px; background:var(--ink); margin:5px 0;}
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;
+    padding:100px 32px 120px;
+    max-width:var(--max); margin:0 auto;
+    display:grid; grid-template-columns:1fr; gap:40px; 
+    align-items:center;
+    /*PLACEHOLDER*/
+    justify-items:center;text-align:center;
+  }
+  .eyebrow{
+    font-size:0.78rem; color:var(--sage-deep); text-transform:uppercase;
+    letter-spacing:0.14em; margin-bottom:18px; display:block;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    max-width:11ch;
+    /*PLACEHOLDER*/
+    margin:auto; 
+  }
+  .hero h1 em{font-style:italic; color:var(--sage-deep);}
+  .hero p.lead{
+    margin-top:22px; font-size:1.08rem; color:var(--ink-soft); max-width:46ch;
+    /*PLACEHOLDER*/
+    margin:22px auto 0;
+  }
+  .hero-ctas{
+    display:flex; gap:16px; margin-top:34px; flex-wrap:wrap;
+    /*PLACEHOLDER*/
+    justify-content:center;
+  }
+  .btn-primary{
+    background:var(--sage-deep); color:var(--white); padding:14px 28px;
+    border-radius:var(--radius); text-decoration:none; font-size:0.94rem;
+    transition:transform .2s, background .2s;
+  }
+  .btn-primary:hover{background:var(--ink); transform:translateY(-1px);}
+  .btn-ghost{
+    border:1px solid var(--ink); color:var(--ink); padding:13px 26px;
+    border-radius:var(--radius); text-decoration:none; font-size:0.94rem;
+    transition:background .2s;
+  }
+  .btn-ghost:hover{background:var(--paper-dark);}
+
+  /* ring / signature motif */
+  .ring-wrap{
+    display:flex; align-items:center; justify-content:center; position:relative;
+  }
+  .ring-wrap svg{width:100%; max-width:300px; height:auto;}
+  .ring-track{fill:none; stroke:var(--line); stroke-width:1;}
+  .ring-progress{
+    fill:none; stroke:var(--sage-deep); stroke-width:1.4; stroke-linecap:round;
+    transform-origin:center; transform:rotate(-90deg);
+    animation:breathe 9s ease-in-out infinite;
+  }
+  .ring-label{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; fill:var(--ink-soft);
+    letter-spacing:0.08em;
+  }
+  .ring-num{
+    font-family:'Fraunces', serif; font-size:2.6rem; fill:var(--ink); font-weight:500;
+  }
+  @keyframes breathe{
+    0%{stroke-dashoffset:660;}
+    50%{stroke-dashoffset:60;}
+    100%{stroke-dashoffset:660;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .ring-progress{animation:none; stroke-dashoffset:360;}
+  }
+
+  /* scroll progress ring, fixed corner */
+  .scroll-ring{
+    position:fixed; bottom:24px; right:24px; z-index:60;
+    width:52px; height:52px; opacity:0; transition:opacity .3s;
+  }
+  .scroll-ring.visible{opacity:1;}
+  .scroll-ring svg{width:100%; height:100%; transform:rotate(-90deg);}
+  .scroll-ring circle{fill:var(--paper); }
+  .scroll-track{stroke:var(--line); stroke-width:3; fill:rgba(250,248,242,0.9);}
+  .scroll-fill{stroke:var(--sage-deep); stroke-width:3; stroke-linecap:round; fill:none;}
+
+  /* ============ SECTION helpers ============ */
+  section{padding:96px 32px;}
+  .section-head{max-width:640px; margin-bottom:56px;}
+  .section-head .eyebrow{margin-bottom:14px;}
+  .section-head h2{font-size:clamp(1.7rem, 3vw, 2.3rem);}
+
+  /* ============ SOBRE MI ============ */
+  .sobre{background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .sobre-grid{
+    max-width:var(--max); margin:0 auto;
+    display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px; align-items:start;
+  }
+  .portrait{
+    aspect-ratio:4/5; border-radius:var(--radius);
+    background:
+      radial-gradient(circle at 30% 20%, rgba(85,105,79,0.25), transparent 60%),
+      linear-gradient(160deg, var(--sage-deep), var(--ink) 130%);
+    position:relative; overflow:hidden;
+  }
+  .portrait::after{
+    content:"MS";
+    position:absolute; bottom:24px; left:24px;
+    font-family:'Fraunces', serif; font-size:1.1rem; color:var(--white); opacity:0.85;
+  }
+  .sobre-text blockquote{
+    font-family:'Fraunces', serif; font-style:italic; font-size:1.3rem;
+    color:var(--sage-deep); border-left:2px solid var(--sage-deep);
+    padding-left:22px; margin:28px 0; line-height:1.5;
+  }
+  .credentials{list-style:none; margin-top:28px; display:flex; flex-direction:column; gap:10px;}
+  .credentials li{
+    display:flex; gap:12px; font-size:0.92rem; color:var(--ink-soft);
+  }
+  .credentials li::before{content:"—"; color:var(--ochre);}
+
+  /* ============ MODALIDAD (cards) ============ */
+  .cards{
+    max-width:var(--max); margin:0 auto;
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+  }
+  .card{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:32px 28px; transition:transform .25s, box-shadow .25s;
+  }
+  .card:hover{transform:translateY(-4px); box-shadow:0 12px 28px -12px rgba(32,35,31,0.18);}
+  .card svg{width:30px; height:30px; stroke:var(--sage-deep); margin-bottom:20px;}
+  .card h3{font-size:1.08rem; margin-bottom:10px; font-weight:600;}
+  .card p{font-size:0.92rem; color:var(--ink-soft);}
+
+  /* ============ RECURSOS ============ */
+  .recursos-grid{
+    max-width:var(--max); margin:0 auto;
+    display:grid; grid-template-columns:repeat(3,1fr); gap:28px;
+  }
+  .art-card{
+    border-radius:var(--radius); overflow:hidden; background:var(--white);
+    border:1px solid var(--line); display:flex; flex-direction:column;
+    transition:transform .25s;
+  }
+  .art-card:hover{transform:translateY(-4px);}
+  .art-thumb{
+    height:150px;
+    background:linear-gradient(135deg, var(--paper-dark), var(--sage) 140%);
+    position:relative;
+  }
+  .art-thumb .tag{
+    position:absolute; bottom:12px; left:16px;
+    font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:var(--white);
+    text-transform:uppercase; letter-spacing:0.08em; opacity:0.9;
+  }
+  .art-body{padding:22px 22px 26px; display:flex; flex-direction:column; flex:1;}
+  .art-body h3{font-size:1.02rem; margin-bottom:10px; font-weight:500;}
+  .art-body p{font-size:0.88rem; color:var(--ink-soft); flex:1;}
+  .art-link{
+    margin-top:16px; font-size:0.82rem; color:var(--sage-deep); text-decoration:none;
+    font-weight:500;
+  }
+  .art-link:hover{text-decoration:underline;}
+
+  /* ============ FAQ ============ */
+  .faq{max-width:760px; margin:0 auto;}
+  .faq details{
+    border-bottom:1px solid var(--line); padding:20px 0;
+  }
+  .faq summary{
+    cursor:pointer; list-style:none; display:flex; justify-content:space-between;
+    align-items:center; font-size:1rem; font-weight:500; color:var(--ink);
+  }
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary .icon{
+    width:20px; height:20px; position:relative; flex-shrink:0; margin-left:20px;
+  }
+  .faq summary .icon::before,
+  .faq summary .icon::after{
+    content:""; position:absolute; background:var(--ink); border-radius:2px;
+    transition:transform .25s;
+  }
+  .faq summary .icon::before{width:100%; height:2px; top:9px; left:0;}
+  .faq summary .icon::after{width:2px; height:100%; left:9px; top:0;}
+  .faq details[open] summary .icon::after{transform:rotate(90deg); opacity:0;}
+  .faq-body{padding-top:14px; font-size:0.92rem; color:var(--ink-soft); max-width:60ch;}
+
+  /* ============ CONTACTO ============ */
+  .contacto{background:var(--sage-deep); color:var(--white);}
+  .contacto .section-head h2{color:var(--white);}
+  .contacto .eyebrow{color:var(--paper-dark);}
+  .form-grid{
+    max-width:var(--max); margin:0 auto;
+    display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;
+  }
+  .contacto-info p{color:rgba(250,248,242,0.75); max-width:38ch; margin-top:14px;}
+  .contacto-info .mono{display:block; margin-top:26px; font-size:0.85rem; opacity:0.85;}
+
+  form{display:flex; flex-direction:column; gap:16px;}
+  .field label{
+    display:block; font-size:0.8rem; margin-bottom:6px; color:rgba(250,248,242,0.85);
+    text-transform:uppercase; letter-spacing:0.06em;
+  }
+  .field input, .field select, .field textarea{
+    width:100%; background:rgba(250,248,242,0.08); border:1px solid rgba(250,248,242,0.3);
+    border-radius:var(--radius); padding:12px 14px; color:var(--white); font-family:inherit;
+    font-size:0.94rem;
+  }
+  .field input::placeholder, .field textarea::placeholder{color:rgba(250,248,242,0.4);}
+  .field textarea{resize:vertical; min-height:110px;}
+  .field select option{color:var(--ink);}
+  .submit-btn{
+    margin-top:6px; background:var(--ochre); color:var(--ink); border:none;
+    padding:14px 26px; border-radius:var(--radius); font-size:0.94rem; font-weight:500;
+    cursor:pointer; transition:background .2s; align-self:flex-start;
+  }
+  .submit-btn:hover{background:#c79a53;}
+  .form-note{font-size:0.8rem; margin-top:10px; opacity:0.85; display:none;}
+  .form-note.show{display:block;}
+
+  /* ============ FOOTER ============ */
+  footer{padding:56px 32px; border-top:1px solid var(--line);}
+  .footer-grid{
+    max-width:var(--max); margin:0 auto; display:flex; justify-content:space-between;
+    align-items:center; flex-wrap:wrap; gap:20px;
+  }
+  .footer-links{display:flex; gap:26px; list-style:none; font-size:0.86rem; color:var(--ink-soft);}
+  .footer-links a{text-decoration:none;}
+  .footer-links a:hover{color:var(--sage-deep);}
+  .copy{font-size:0.8rem; color:var(--ink-soft);}
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:860px){
+    .nav-links, .nav-cta{display:none;}
+    .burger{display:block;}
+    .hero{grid-template-columns:1fr; padding-top:60px;}
+    .ring-wrap{order:-1; margin-bottom:10px;}
+    .ring-wrap svg{max-width:220px;}
+    .sobre-grid{grid-template-columns:1fr;}
+    .portrait{max-width:280px;}
+    .cards{grid-template-columns:1fr;}
+    .recursos-grid{grid-template-columns:1fr;}
+    .form-grid{grid-template-columns:1fr; gap:36px;}
+    section{padding:64px 20px;}
+    .hero{padding:60px 20px 80px;}
+  }
+
+  .mobile-menu{
+    display:none; flex-direction:column; gap:18px; padding:24px 32px 30px;
+    border-top:1px solid var(--line); background:var(--paper);
+  }
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{text-decoration:none; font-size:0.98rem; color:var(--ink);}
+  .mobile-menu .nav-cta{display:inline-block; width:fit-content;}
+</style>
+</head>
+
+
+
+<body>
+
+<header>
+  <nav class="nav">
+    <div class="logo">Lic. Eliana <span>Malvicino</span></div>
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre mí</a></li>
+      <li><a href="#modalidad">Modalidad</a></li>
+      <li><a href="#recursos">Recursos</a></li>
+      <li><a href="#faq">Preguntas</a></li>
+    </ul>
+    <a href="#contacto" class="nav-cta">Reservar sesión</a>
+    <button class="burger" id="burgerBtn" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#sobre">Sobre mí</a>
+    <a href="#modalidad">Modalidad</a>
+    <a href="#recursos">Recursos</a>
+    <a href="#faq">Preguntas</a>
+    <a href="#contacto" class="nav-cta">Reservar sesión</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div>
+    <span class="eyebrow">Psicología clínica · Online</span>
+    <h1>Un espacio para <em>pensar</em>, sin apuro.</h1>
+    <p class="lead">Terapia individual para adultos y adolescentes, por videollamada, en el horario que a vos te sirve. Sin protocolos genéricos ni lista de espera.</p>
+    <div class="hero-ctas">
+      <a href="#contacto" class="btn-primary">Reservar una sesión</a>
+      <a href="#faq" class="btn-ghost">Ver preguntas frecuentes</a>
+    </div>
+  </div>
+  <!--
+  <div class="ring-wrap">
+    <svg viewBox="0 0 220 220">
+      <circle class="ring-track" cx="110" cy="110" r="95"></circle>
+      <circle class="ring-progress" cx="110" cy="110" r="95" stroke-dasharray="597"></circle>
+      <text x="110" y="104" text-anchor="middle" class="ring-num">50</text>
+      <text x="110" y="128" text-anchor="middle" class="ring-label">MINUTOS · SESIÓN</text>
+    </svg>
+  </div>
+  -->
+</section>
+
+<section class="sobre" id="sobre">
+  <div class="sobre-grid">
+    <div class="portrait" role="img" aria-label="Retrato de Lic. Eliana Malvicino"></div>
+    <div class="sobre-text">
+      <span class="eyebrow">Sobre mí</span>
+      <h2>Escucha clínica, sin fórmulas de manual.</h2>
+      <p style="margin-top:18px; color:var(--ink-soft);">Soy Lic. Eliana Malvicino (M.N. 45.213), psicóloga clínica orientada al psicoanálisis, graduada de la Universidad de Buenos Aires. Trabajo con adultos y adolescentes que atraviesan ansiedad, duelo, crisis vitales, o que simplemente necesitan un espacio propio para pensar en voz alta.</p>
+      <blockquote>No trabajo con protocolos cerrados ni objetivos impuestos desde afuera: acompaño a cada persona a construir sus propias respuestas, a su tiempo.</blockquote>
+      <ul class="credentials">
+        <li>Universidad de Buenos Aires (UBA)</li>
+        <li>Miembro de APA — Asociación Psicoanalítica Argentina</li>
+        <li>Formación en Clínica de la Adolescencia</li>
+        <li>Atención en español e inglés</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="modalidad">
+  <div class="section-head">
+    <span class="eyebrow">Modalidad de atención</span>
+    <h2>Pensada para que empezar sea simple.</h2>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="15" height="12" rx="2"></rect><path d="M17 10l5-3v10l-5-3"></path></svg>
+      <h3>Por videollamada</h3>
+      <p>Sesiones seguras y confidenciales, desde donde estés — Argentina o el exterior.</p>
+    </div>
+    <div class="card">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
+      <h3>Terapia individual</h3>
+      <p>Un espacio pensado para vos, sin protocolos ni objetivos de manual.</p>
+    </div>
+    <div class="card">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><path d="M3 9h18M8 2v4M16 2v4"></path><path d="M8 14l2.5 2.5L16 11"></path></svg>
+      <h3>Sin lista de espera</h3>
+      <p>Turnos disponibles esta misma semana, sin trámites de por medio.</p>
+    </div>
+  </div>
+</section>
+
+<section id="recursos" style="background:var(--paper-dark); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="section-head">
+    <span class="eyebrow">Recursos de orientación</span>
+    <h2>Materiales de consulta libre.</h2>
+  </div>
+  <div class="recursos-grid">
+    <article class="art-card">
+      <div class="art-thumb"><span class="tag">Clínica · Ansiedad</span></div>
+      <div class="art-body">
+        <h3>Cuando el cuerpo habla antes que las palabras</h3>
+        <p>Por qué la ansiedad aparece primero como síntoma físico, y qué hacer con eso antes de nombrarlo.</p>
+        <a href="#" class="art-link">Leer artículo →</a>
+      </div>
+    </article>
+    <article class="art-card">
+      <div class="art-thumb"><span class="tag">Adolescencia</span></div>
+      <div class="art-body">
+        <h3>Acompañar sin invadir: el lugar del adulto</h3>
+        <p>El equilibrio entre sostener y dar espacio cuando un adolescente empieza a pedir menos ayuda.</p>
+        <a href="#" class="art-link">Leer artículo →</a>
+      </div>
+    </article>
+    <article class="art-card">
+      <div class="art-thumb"><span class="tag">Duelo</span></div>
+      <div class="art-body">
+        <h3>Lo que el duelo necesita, y lo que no</h3>
+        <p>Por qué apurar un proceso de duelo suele profundizarlo en vez de resolverlo.</p>
+        <a href="#" class="art-link">Leer artículo →</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="section-head" style="margin:0 auto 48px;">
+    <span class="eyebrow">Preguntas frecuentes</span>
+    <h2>Lo que suelen preguntar antes de empezar.</h2>
+  </div>
+  <div class="faq">
+    <details open>
+      <summary>¿La terapia online funciona igual que la presencial?<span class="icon"></span></summary>
+      <div class="faq-body">Sí. Lo que sostiene un proceso terapéutico es el vínculo y la continuidad de los encuentros, no el lugar físico donde ocurren.</div>
+    </details>
+    <details>
+      <summary>¿Cuánto duran las sesiones y con qué frecuencia?<span class="icon"></span></summary>
+      <div class="faq-body">Cada sesión dura 50 minutos. La frecuencia habitual es semanal, aunque puede ajustarse según el momento del proceso.</div>
+    </details>
+    <details>
+      <summary>¿Cómo sé si necesito terapia o puedo manejarlo solo/a?<span class="icon"></span></summary>
+      <div class="faq-body">No hace falta esperar una crisis para consultar. Si algo te ocupa espacio en la cabeza de forma sostenida, ya es motivo suficiente.</div>
+    </details>
+    <details>
+      <summary>¿Qué pasa en la primera sesión?<span class="icon"></span></summary>
+      <div class="faq-body">Conversamos sobre lo que te trae a terapia y armamos, entre los dos, una primera idea de cómo trabajar.</div>
+    </details>
+    <details>
+      <summary>¿Es confidencial lo que hablamos?<span class="icon"></span></summary>
+      <div class="faq-body">Sí, con las excepciones legales habituales (riesgo de vida propio o de terceros), que se explican antes de empezar.</div>
+    </details>
+    <details>
+      <summary>¿Cómo son los honorarios?<span class="icon"></span></summary>
+      <div class="faq-body">Son accesibles y se informan antes de la primera sesión, con opción de pago en pesos o dólares según tu ubicación.</div>
+    </details>
+  </div>
+</section>
+
+<section class="contacto" id="contacto">
+  <div class="form-grid">
+    <div class="contacto-info">
+      <span class="eyebrow">Realizar una consulta</span>
+      <h2>Escribime cuando quieras.</h2>
+      <p>Respondo en menos de 48 horas hábiles. Si preferís reservar directamente un turno, usá el botón de arriba.</p>
+      <span class="mono">CONSULTAS@eliana.COM.AR</span>
+    </div>
+    <form id="contactForm">
+      <div class="field">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" placeholder="Tu nombre completo" required>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="tu@email.com" required>
+      </div>
+      <div class="field">
+        <label for="ubicacion">Ubicación</label>
+        <select id="ubicacion">
+          <option>Argentina</option>
+          <option>Exterior</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" placeholder="Escribí tu consulta..." required></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Enviar mensaje</button>
+      <span class="form-note" id="formNote">Gracias — esto es una demo, así que el mensaje no se envió a ningún lado.</span>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="logo">Lic. Eliana <span style="color:var(--sage);">Malvicino</span></div>
+    <ul class="footer-links">
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">LinkedIn</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <span class="copy">© 2026 Lic. Eliana Malvicino — Proyecto de portfolio, contenido ficticio</span>
+  </div>
+</footer>
+
+<div class="scroll-ring" id="scrollRing">
+  <svg viewBox="0 0 52 52">
+    <circle class="scroll-track" cx="26" cy="26" r="22"></circle>
+    <circle class="scroll-fill" id="scrollFill" cx="26" cy="26" r="22" stroke-dasharray="138" stroke-dashoffset="138"></circle>
+  </svg>
+</div>
+
+<script>
+  // menu mobile
+  const burger = document.getElementById('burgerBtn');
+  const menu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => menu.classList.toggle('open'));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+
+  
+  // ANILLO SCROLLEO
+  /*
+  // scroll progress ring (signature element repetido)
+  const ring = document.getElementById('scrollRing');
+  const fill = document.getElementById('scrollFill');
+  const CIRC = 138;
+
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = max > 0 ? scrolled / max : 0;
+    fill.style.strokeDashoffset = CIRC - (CIRC * pct);
+    ring.classList.toggle('visible', scrolled > 200);
+  });
+  */
+  // form demo (no envia a ningun lado, es solo portfolio)
+  document.getElementById('contactForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('formNote').classList.add('show');
+  });
+</script>
+
+</body>
+</html>
