@@ -98,6 +98,12 @@
     align-items:center;
     /*PLACEHOLDER*/
     justify-items:center;text-align:center;
+
+    /*
+    background-image:url('hero_background.jpg');
+    background-size:cover;
+    background-position:center;
+    */
   }
   .eyebrow{
     font-size:0.78rem; color:var(--sage-deep); text-transform:uppercase;
@@ -184,16 +190,12 @@
     display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px; align-items:start;
   }
   .portrait{
-    aspect-ratio:4/5; border-radius:var(--radius);
-    background:
-      radial-gradient(circle at 30% 20%, rgba(85,105,79,0.25), transparent 60%),
-      linear-gradient(160deg, var(--sage-deep), var(--ink) 130%);
+    aspect-ratio:3.75/5; border-radius:var(--radius);
+  /* guarda con el aspect ratio raro*/
+    background-image:url('sobre_mi.jpg');
+    background-size:cover;
+    background-position:center;
     position:relative; overflow:hidden;
-  }
-  .portrait::after{
-    content:"MS";
-    position:absolute; bottom:24px; left:24px;
-    font-family:'Fraunces', serif; font-size:1.1rem; color:var(--white); opacity:0.85;
   }
   .sobre-text blockquote{
     font-family:'Fraunces', serif; font-style:italic; font-size:1.3rem;
