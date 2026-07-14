@@ -110,7 +110,7 @@
   }
   .hero h1{
     font-size:clamp(2.4rem, 5vw, 3.6rem);
-    max-width:11ch;
+    /*max-width:11ch; todo en un renglon*/
     /*PLACEHOLDER*/
     margin:auto; 
   }
@@ -189,7 +189,7 @@
     display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px; align-items:start;
   }
   .portrait{
-    aspect-ratio:3.75/5; border-radius:var(--radius);
+    aspect-ratio:4.24/5; border-radius:var(--radius);
   /* guarda con el aspect ratio raro*/
     background-image:url('sobre_mi.jpg');
     background-size:cover;
@@ -242,7 +242,7 @@
   .faq summary .icon::before{width:100%; height:2px; top:9px; left:0;}
   .faq summary .icon::after{width:2px; height:100%; left:9px; top:0;}
   .faq details[open] summary .icon::after{transform:rotate(90deg); opacity:0;}
-  .faq-body{padding-top:14px; font-size:0.92rem; color:var(--ink-soft); max-width:60ch;}
+  .faq-body{padding-top:14px; font-size:0.92rem; color:var(--ink-soft); max-width:60ch;text-align:justify;}
 
   /* ============ CONTACTO ============ */
   .contacto{background:var(--sage-deep); color:var(--white);}
@@ -342,35 +342,31 @@
   <div>
     <span class="eyebrow">Psicología clínica · Online · Presencial</span>
     <h1>Terapia como <em>pausa</em>, <em>encuentro</em> y <em>camino</em>.</h1>
-    <p class="lead">Pausa para salir del piloto automático. Encuentro con tu experiencia, sin juicios. Camino hacia una vida con mayor bienestar, guiado por aquello que es importante para vos.</p>
+    <p class="lead">Pausa para salir del piloto automático. 
+      <br>
+      Encuentro con tu experiencia, sin juicios. 
+      <br>
+      Camino hacia una vida con mayor bienestar.</p>
     <div class="hero-ctas">
-      <a href="#contacto" class="btn-primary">Todo camino comienza con un primer paso.</a>
+      <a href="#contacto" class="btn-primary">Dá el primer paso</a>
       <a href="#faq" class="btn-ghost">Ver preguntas frecuentes</a>
     </div>
   </div>
-  <!--
-  <div class="ring-wrap">
-    <svg viewBox="0 0 220 220">
-      <circle class="ring-track" cx="110" cy="110" r="95"></circle>
-      <circle class="ring-progress" cx="110" cy="110" r="95" stroke-dasharray="597"></circle>
-      <text x="110" y="104" text-anchor="middle" class="ring-num">50</text>
-      <text x="110" y="128" text-anchor="middle" class="ring-label">MINUTOS · SESIÓN</text>
-    </svg>
-  </div>
-  -->
 </section>
 
 <section class="sobre" id="sobre">
   <div class="sobre-grid">
     <div class="portrait" role="img" aria-label="Retrato de Lic. Eliana Malvicino"></div>
     <div class="sobre-text">
-      <span class="eyebrow">Sobre mí</span>
-      <h2>Comprender para construir sentido.</h2>
-      <p style="margin-top:18px; color:var(--ink-soft);">Soy Lic. Eliana Malvicino (M.N. 87.744), licenciada en Psicología por la Universidad de Buenos Aires. Acompaño a adolescentes y adultos que atraviesan ansiedad, depresión, estrés, crisis vitales, procesos de duelo o dificultades en sus relaciones.
+      <span class="eyebrow">Comprender para construir sentido</span>
+      <h2>Sobre mí</h2>
+      <p style="margin-top:18px; color:var(--ink-soft); text-align:justify;">Soy Lic. Eliana Malvicino (M.N. 87.744), licenciada en Psicología por la Universidad de Buenos Aires. 
         <br>
-        La terapia también puede ser un espacio para quienes desean comprender mejor lo que les sucede, desarrollar nuevas herramientas y construir una vida con mayor bienestar.
+        Acompaño a adolescentes y adultos que atraviesan ansiedad, depresión, estrés, crisis vitales, procesos de duelo o dificultades en sus relaciones.
       </p>
-      <blockquote>Creo en un espacio terapéutico donde cada persona pueda sentirse escuchada, comprendida y acompañada en la construcción de cambios posibles.</blockquote>
+      <blockquote>Brindo un espacio terapéutico donde podamos comprender juntos aquello que te genera malestar,
+        trabajar en tus objetivos y desarrollar recursos para vivir de una manera más plena.
+      </blockquote>
       <ul class="credentials">
         <li>Licenciada en Psicología por la Universidad de Buenos Aires (UBA), egresada con honores.</li>
         <li>Posgrado en curso en Terapia Cognitivo-Conductual y formación en abordajes conductuales contextuales.</li>
@@ -399,8 +395,8 @@
     </div>
     <div class="card">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><path d="M3 9h18M8 2v4M16 2v4"></path><path d="M8 14l2.5 2.5L16 11"></path></svg>
-      <h3>Sin lista de espera</h3>
-      <p>Turnos disponibles esta misma semana, sin trámites de por medio.</p>
+      <h3>Agenda abierta</h3>
+      <p>Consultá por los próximos turnos disponibles.</p>
     </div>
   </div>
 </section>
@@ -428,10 +424,7 @@
       <div class="faq-body">La primera sesión es un espacio para conocernos y comprender el motivo de consulta. 
         Hablaremos sobre lo que te está sucediendo, cómo te sentís y qué te trae a terapia en este momento. 
         Este primer encuentro se realiza de forma virtual.
-        <br>
-        <br>
-        También será una oportunidad para que puedas hacer las preguntas que necesites y conocer cómo será el proceso terapéutico.
-</div>
+      </div>
     </details>
     <details>
       <summary>¿Cuál es la modalidad y la frecuencia de las sesiones?<span class="icon"></span></summary>
@@ -441,7 +434,7 @@
     </details>
     <details>
       <summary>¿Cómo son los honorarios?<span class="icon"></span></summary>
-      <div class="faq-body">Son accesibles y se informan antes de la primera sesión, con opción de pago en pesos o dólares según tu ubicación.</div>
+      <div class="faq-body">Los honorarios se informan antes de la primera sesión. El pago puede realizarse en pesos o dólares, según tu ubicación.</div>
     </details>
   </div>
 </section>
