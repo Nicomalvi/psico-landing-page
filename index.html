@@ -210,47 +210,74 @@
   .card h3{font-size:1.08rem; margin-bottom:10px; font-weight:600;}
   .card p{font-size:0.92rem; color:var(--ink-soft);}
 
-  /* ============ FAQ ============ */
+  /* inicio codigo FAQ =======================================================
+     apertura/cierre se controla 100% con una clase CSS ".open"
+     que agrega/saca un JavaScript
+  */
   .faq{max-width:760px; margin:0 auto;}
-  .faq details{
-    border-bottom:1px solid var(--line); padding:20px 0;
+
+  /* Cada pregunta es un <div class="faq-item"> que contiene:
+     - un <button class="faq-question"> (el título clickeable)
+     - un <div class="faq-answer"> (la respuesta, oculta por defecto) 
+  */
+  .faq-item{
+    border-bottom:1px solid var(--line);
   }
-  .faq summary{
-  cursor:pointer; list-style:none; display:flex; justify-content:space-between;
-  align-items:center; font-size:1rem; font-weight:500; color:var(--ink);
-  transition:color .2s, padding-left .2s;
+
+  .faq-question{
+    width:100%;
+    background:none;
+    border:none;
+    padding:20px 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    cursor:pointer;
+    font-family:inherit;
+    font-size:1rem;
+    font-weight:500;
+    color:var(--ink);
+    text-align:left;
+    transition:color .2s, padding-left .2s;
   }
-  .faq summary:hover{
-    color:var(--sage); 
+  .faq-question:hover{
+    color:var(--sage-deep);
     padding-left:6px;
   }
-  .faq summary::-webkit-details-marker{display:none;}
-  .faq summary .icon{
+
+  /* el ícono +/- es un <span> simple dentro del botón */
+  .faq-question .icon{
     width:20px; height:20px; position:relative; flex-shrink:0; margin-left:20px;
   }
-  .faq summary .icon::before,
-  .faq summary .icon::after{
+  .faq-question .icon::before,
+  .faq-question .icon::after{
     content:""; position:absolute; background:var(--ink); border-radius:2px;
-    transition:transform .25s;
+    transition:transform .25s, background .2s;
   }
-  .faq summary .icon::before{width:100%; height:2px; top:9px; left:0;}
-  .faq summary .icon::after{width:2px; height:100%; left:9px; top:0;}
-  .faq details[open] summary .icon::after{transform:rotate(90deg); opacity:0;}
+  .faq-question .icon::before{width:100%; height:2px; top:9px; left:0;}
+  .faq-question .icon::after{width:2px; height:100%; left:9px; top:0;}
+  /* cuando el item tiene la clase .open, el "palito" vertical del + gira
+     y desaparece, quedando solo el "-" */
+  .faq-item.open .icon::after{transform:rotate(90deg); opacity:0;}
+  .faq-item.open .icon::before{background:var(--sage-deep);}
 
-  .faq-body{
-  font-size:0.92rem; color:var(--ink-soft); max-width:60ch; text-align:justify;
-  display:grid;
-  grid-template-rows:0fr;
-  opacity:0;
-  transition:grid-template-rows .3s ease, opacity .25s ease, padding-top .3s ease;
-  padding-top:0;
+  /* la respuesta: colapsada con max-height:0, se expande con .open a un
+     valor fijo (400px) que alcanza de sobra para estos textos.
+     Esto es lo que hace que la animación sea siempre estable: no depende
+     de calcular la altura real del contenido con JS. */
+  .faq-answer{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .35s ease, padding .35s;
+    font-size:0.92rem; color:var(--ink-soft); max-width:60ch; text-align:justify;
+    padding:0;
   }
-  .faq-body > *{overflow:hidden;}
-  .faq details[open] .faq-body{
-    grid-template-rows:1fr;
-    opacity:1;
-    padding-top:14px;
+  .faq-item.open .faq-answer{
+    max-height:400px;
+    padding-top:0;
+    padding-bottom:20px;
   }
+  /*Fin codigo FAQ =======================================================*/
 
   /* ============ CONTACTO ============ */
   .contacto{background:var(--sage-deep); color:var(--white);}
@@ -417,50 +444,52 @@
     <span class="eyebrow">Preguntas frecuentes</span>
     <h2>Lo que suelen preguntar antes de empezar.</h2>
   </div>
+
   <div class="faq">
-    <details>
-      <summary>¿Qué enfoque terapéutico se utiliza?<span class="icon"></span></summary>
-      <div class="faq-body">
-        <div>Trabajo desde la Terapia Cognitivo-Conductual (TCC) y enfoques conductuales contextuales, modelos basados en evidencia científica. 
+    <div class="faq-item">
+      <button class="faq-question">
+        ¿Qué enfoque terapéutico se utiliza?
+        <span class="icon"></span>
+      </button>
+      <div class="faq-answer">Trabajo desde la Terapia Cognitivo-Conductual (TCC) y enfoques conductuales contextuales, modelos basados en evidencia científica. 
         Estos enfoques permiten comprender la relación entre pensamientos, emociones, conductas y el contexto de cada persona, 
-        promoviendo el desarrollo de herramientas, una mayor flexibilidad psicológica y cambios orientados hacia una vida significativa.
-        </div>
-      </div>
-    </details>
-    <details>
-      <summary>¿Cuándo puede ser un buen momento para consultar?<span class="icon"></span></summary>
-      <div class="faq-body">
-        <div>Cada persona tiene sus propios motivos para iniciar terapia. 
+        promoviendo el desarrollo de herramientas, una mayor flexibilidad psicológica y cambios orientados hacia una vida significativa.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        ¿Cuándo puede ser un buen momento para consultar?
+        <span class="icon"></span>
+      </button>
+      <div class="faq-answer">Cada persona tiene sus propios motivos para iniciar terapia. 
         Quizás hay algo que te preocupa desde hace tiempo, una situación que se repite y no sabés cómo abordar, 
-        o simplemente sentís que este puede ser un buen momento para contar con un espacio de escucha y acompañamiento profesional.
-        </div>
-      </div>
-    </details>
-    <details>
-      <summary>¿En qué consiste la primera sesión?<span class="icon"></span></summary>
-      <div class="faq-body">
-        <div>La primera sesión es un espacio para conocernos y comprender el motivo de consulta. 
+        o simplemente sentís que este puede ser un buen momento para contar con un espacio de escucha y acompañamiento profesional.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        ¿En qué consiste la primera sesión?
+        <span class="icon"></span>
+      </button>
+      <div class="faq-answer">La primera sesión es un espacio para conocernos y comprender el motivo de consulta. 
         Hablaremos sobre lo que te está sucediendo, cómo te sentís y qué te trae a terapia en este momento. 
         Este primer encuentro se realiza de forma virtual.
-        </div>
       </div>
-    </details>
-    <details>
-      <summary>¿Cuál es la modalidad y la frecuencia de las sesiones?<span class="icon"></span></summary>
-      <div class="faq-body">
-        <div>Las sesiones pueden ser presenciales o virtuales, tienen una duración de entre 40 y 60 minutos y, por lo general, 
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        ¿Cuál es la modalidad y la frecuencia de las sesiones?
+        <span class="icon"></span>
+      </button>
+      <div class="faq-answer">Las sesiones pueden ser presenciales o virtuales, tienen una duración de entre 40 y 60 minutos y, por lo general, 
         se realizan con frecuencia semanal. La modalidad y la frecuencia se acuerdan en función de las necesidades de cada persona y del momento 
-        del proceso terapéutico.
-        </div>
-      </div>
-    </details>
-    <details>
-      <summary>¿Cómo son los honorarios?<span class="icon"></span></summary>
-      <div class="faq-body">
-        <div>Los honorarios se informan antes de la primera sesión. El pago puede realizarse en pesos o dólares, según tu ubicación.
-          </div>
-        </div>
-    </details>
+        del proceso terapéutico.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        ¿Cómo son los honorarios?
+        <span class="icon"></span>
+      </button>
+      <div class="faq-answer">Los honorarios se informan antes de la primera sesión. El pago puede realizarse en pesos o dólares, según tu ubicación.</div>
+    </div>
   </div>
 </section>
 
@@ -538,38 +567,17 @@
   }
 });
 
-
-
-// animación FAQ (abrir y cerrar)
-document.querySelectorAll('.faq details').forEach(details => {
-  const summary = details.querySelector('summary');
-  const body = details.querySelector('.faq-body');
-
-  summary.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    if (details.open) {
-      // CERRANDO: animo, luego cierro
-      body.style.gridTemplateRows = '0fr';
-      body.style.opacity = '0';
-      body.style.paddingTop = '0px';
-      body.addEventListener('transitionend', function onEnd(ev) {
-        if (ev.propertyName === 'grid-template-rows') {
-          details.open = false;
-          body.removeEventListener('transitionend', onEnd);
-        }
-      });
-    } else {
-      // ABRIENDO: abro ahora, animo sig. frame
-      details.open = true;
-      requestAnimationFrame(() => {
-        body.style.gridTemplateRows = '1fr';
-        body.style.opacity = '1';
-        body.style.paddingTop = '14px';
-      });
-    }
+  /* FAQ
+  cada .faq-item tiene un botón .faq-question.
+  click togglea la clase "open" en el .faq-item.
+  Toda la animación (abrir Y cerrar) la resuelve el CSS con max-height
+  */
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const btn = item.querySelector('.faq-question');
+    btn.addEventListener('click', () => {
+      item.classList.toggle('open');
+    });
   });
-});
 
 </script>
 
