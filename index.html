@@ -99,7 +99,7 @@
       justify-items:center;text-align:center;
       
       background-image:
-        linear-gradient(rgba(234, 240, 246, 0.6), rgba(234,240,246,1)),
+        linear-gradient(rgba(234, 240, 246, 0.6), rgba(234,240,246,1)),/*HARDCODEADO*/
         url('hero_background.jpg');
       background-size:cover;
       background-position:center;
@@ -216,8 +216,13 @@
     border-bottom:1px solid var(--line); padding:20px 0;
   }
   .faq summary{
-    cursor:pointer; list-style:none; display:flex; justify-content:space-between;
-    align-items:center; font-size:1rem; font-weight:500; color:var(--ink);
+  cursor:pointer; list-style:none; display:flex; justify-content:space-between;
+  align-items:center; font-size:1rem; font-weight:500; color:var(--ink);
+  transition:color .2s, padding-left .2s;
+  }
+  .faq summary:hover{
+    color:var(--sage); 
+    padding-left:6px;
   }
   .faq summary::-webkit-details-marker{display:none;}
   .faq summary .icon{
@@ -231,7 +236,21 @@
   .faq summary .icon::before{width:100%; height:2px; top:9px; left:0;}
   .faq summary .icon::after{width:2px; height:100%; left:9px; top:0;}
   .faq details[open] summary .icon::after{transform:rotate(90deg); opacity:0;}
-  .faq-body{padding-top:14px; font-size:0.92rem; color:var(--ink-soft); max-width:60ch;text-align:justify;}
+
+  .faq-body{
+  font-size:0.92rem; color:var(--ink-soft); max-width:60ch; text-align:justify;
+  display:grid;
+  grid-template-rows:0fr;
+  opacity:0;
+  transition:grid-template-rows .3s ease, opacity .25s ease, padding-top .3s ease;
+  padding-top:0;
+  }
+  .faq-body > *{overflow:hidden;}
+  .faq details[open] .faq-body{
+    grid-template-rows:1fr;
+    opacity:1;
+    padding-top:14px;
+  }
 
   /* ============ CONTACTO ============ */
   .contacto{background:var(--sage-deep); color:var(--white);}
@@ -265,7 +284,7 @@
     padding:14px 26px; border-radius:var(--radius); font-size:0.94rem; font-weight:500;
     cursor:pointer; transition:background .2s; align-self:flex-start;
   }
-  .submit-btn:hover{background:#c2872f;}
+  .submit-btn:hover{background:#c2872f;} /*HARDCODEADO*/
   .form-note{font-size:0.8rem; margin-top:10px; opacity:0.85; display:none;}
   .form-note.show{display:block;}
 
@@ -401,32 +420,46 @@
   <div class="faq">
     <details>
       <summary>¿Qué enfoque terapéutico se utiliza?<span class="icon"></span></summary>
-      <div class="faq-body">Trabajo desde la Terapia Cognitivo-Conductual (TCC) y enfoques conductuales contextuales, modelos basados en evidencia científica. 
+      <div class="faq-body">
+        <div>Trabajo desde la Terapia Cognitivo-Conductual (TCC) y enfoques conductuales contextuales, modelos basados en evidencia científica. 
         Estos enfoques permiten comprender la relación entre pensamientos, emociones, conductas y el contexto de cada persona, 
-        promoviendo el desarrollo de herramientas, una mayor flexibilidad psicológica y cambios orientados hacia una vida significativa.</div>
+        promoviendo el desarrollo de herramientas, una mayor flexibilidad psicológica y cambios orientados hacia una vida significativa.
+        </div>
+      </div>
     </details>
     <details>
       <summary>¿Cuándo puede ser un buen momento para consultar?<span class="icon"></span></summary>
-      <div class="faq-body">Cada persona tiene sus propios motivos para iniciar terapia. 
+      <div class="faq-body">
+        <div>Cada persona tiene sus propios motivos para iniciar terapia. 
         Quizás hay algo que te preocupa desde hace tiempo, una situación que se repite y no sabés cómo abordar, 
-        o simplemente sentís que este puede ser un buen momento para contar con un espacio de escucha y acompañamiento profesional.</div>
+        o simplemente sentís que este puede ser un buen momento para contar con un espacio de escucha y acompañamiento profesional.
+        </div>
+      </div>
     </details>
     <details>
       <summary>¿En qué consiste la primera sesión?<span class="icon"></span></summary>
-      <div class="faq-body">La primera sesión es un espacio para conocernos y comprender el motivo de consulta. 
+      <div class="faq-body">
+        <div>La primera sesión es un espacio para conocernos y comprender el motivo de consulta. 
         Hablaremos sobre lo que te está sucediendo, cómo te sentís y qué te trae a terapia en este momento. 
         Este primer encuentro se realiza de forma virtual.
+        </div>
       </div>
     </details>
     <details>
       <summary>¿Cuál es la modalidad y la frecuencia de las sesiones?<span class="icon"></span></summary>
-      <div class="faq-body">Las sesiones pueden ser presenciales o virtuales, tienen una duración de entre 40 y 60 minutos y, por lo general, 
+      <div class="faq-body">
+        <div>Las sesiones pueden ser presenciales o virtuales, tienen una duración de entre 40 y 60 minutos y, por lo general, 
         se realizan con frecuencia semanal. La modalidad y la frecuencia se acuerdan en función de las necesidades de cada persona y del momento 
-        del proceso terapéutico.</div>
+        del proceso terapéutico.
+        </div>
+      </div>
     </details>
     <details>
       <summary>¿Cómo son los honorarios?<span class="icon"></span></summary>
-      <div class="faq-body">Los honorarios se informan antes de la primera sesión. El pago puede realizarse en pesos o dólares, según tu ubicación.</div>
+      <div class="faq-body">
+        <div>Los honorarios se informan antes de la primera sesión. El pago puede realizarse en pesos o dólares, según tu ubicación.
+          </div>
+        </div>
     </details>
   </div>
 </section>
@@ -503,6 +536,39 @@
   } catch (error) {
     alert('Hubo un problema al enviar el mensaje. Intentá de nuevo o escribí directamente por mail.');
   }
+});
+
+
+
+// animación FAQ (abrir y cerrar)
+document.querySelectorAll('.faq details').forEach(details => {
+  const summary = details.querySelector('summary');
+  const body = details.querySelector('.faq-body');
+
+  summary.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    if (details.open) {
+      // CERRANDO: animo, luego cierro
+      body.style.gridTemplateRows = '0fr';
+      body.style.opacity = '0';
+      body.style.paddingTop = '0px';
+      body.addEventListener('transitionend', function onEnd(ev) {
+        if (ev.propertyName === 'grid-template-rows') {
+          details.open = false;
+          body.removeEventListener('transitionend', onEnd);
+        }
+      });
+    } else {
+      // ABRIENDO: abro ahora, animo sig. frame
+      details.open = true;
+      requestAnimationFrame(() => {
+        body.style.gridTemplateRows = '1fr';
+        body.style.opacity = '1';
+        body.style.paddingTop = '14px';
+      });
+    }
+  });
 });
 
 </script>
