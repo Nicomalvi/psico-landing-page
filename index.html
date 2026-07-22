@@ -74,6 +74,11 @@
     backdrop-filter:blur(8px);
     border-bottom:1px solid var(--line);
   }
+  /* evito que tocar los botones scrollee de mas y tape titulos */
+  #sobre, #modalidad, #faq, #contacto{
+      scroll-margin-top:40px;
+  }
+
   .nav{
     display:flex; align-items:center; justify-content:space-between;
     padding:20px 32px; max-width:var(--max); margin:0 auto;
@@ -180,10 +185,10 @@
   section{padding:96px 32px;}
   /* reduzco en particular el espacio vacio entre modalidad y faq */
   #modalidad{
-  padding-bottom:48px;
+    padding-bottom:64px;
   }
   #faq{
-    padding-top:48px;
+    padding-top:64px;
   }
 
   .section-head{
