@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lic. Eliana Malvicino — Psicología Clínica</title>
 
+<meta name="description" content="Lic. Eliana Malvicino — Psicóloga clínica (UBA, MN 87.744). Atención a adolescentes y adultos por videollamada y presencial. Terapia Cognitivo-Conductual.">
+
+<meta property="og:title" content="Lic. Eliana Malvicino — Psicología Clínica">
+<meta property="og:description" content="Atención psicológica online y presencial para adolescentes y adultos. Terapia Cognitivo-Conductual.">
+<meta property="og:image" content="https://licelianamalvicino.com/sobre_mi.jpg">
+<meta property="og:url" content="https://licelianamalvicino.com">
+<meta property="og:type" content="website">
+
 <link rel="icon" type="image/png" href="favicon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -583,8 +591,10 @@
   */
   document.querySelectorAll('.faq-item').forEach(item => {
     const btn = item.querySelector('.faq-question');
+    btn.setAttribute('aria-expanded', 'false');
     btn.addEventListener('click', () => {
-      item.classList.toggle('open');
+      const isOpen = item.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen);
     });
   });
 
